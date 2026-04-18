@@ -1,0 +1,12 @@
+it is in the common discourse around alignment, esp. inner vs outer alignment, that key ingredients of AI -- activation, optimization, selection and control etc. -- are also ubiquitous in robust natural processes; evolution and market dynamics being often cited examples. If we want to capture living beings, machines, possibly also institutions with the same model, then we are preparing to find scale-free phenomena. This is a tentative first description of what I'm envisioning:
+- increasing fitness by optimization: an improvement process involves a preexisting, high-reliability (seemingly inert) basis, which can produce judgement about how closely something else approximates it, e. g.
+	- NN weights tuned by backpropagation based on "verified" training dataset
+	- (poorly understood by me) performance on application-specific benchmarks improved by finetuning, LoRA...
+	- the success of this contributing to public perception and practical use cases if timely and good response is given by labs to high-attention-deserving applications
+	- similarly, via the response to large-scale logistic challenges, competition for large corporate and/or macroeconomic market presence -- where general capabilities shine
+	- the general capability limits promoting or disadvantaging architectures (in an abstract theory race...)
+- the scale-invariant process, in similarly hand-wavy terms
+	- a set of parameters determine fitness
+	- gather reward from testing a batch of param settings
+	- slightly update params then try again
+	- CRUCIALLY reward is existential: the worse some param settings perform w. r. to contributing to fitness, the more they're changed
