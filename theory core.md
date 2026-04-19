@@ -10,5 +10,5 @@ Work in progress as of last update
 - multi-agent systems where at least one agent consists of a quiver but so is the representation of their connection is interesting because it raises questions about [[scale-free]] characteristics of systems that decompose into agents, possibly at multiple levels of hierarchy
 - one of the general directions where I intend to take this theory is defining a transformation of quivers (or the underlying graph) where a set of vertices -- satisfying certain conditions -- collapse into a single one, which corresponds to identification of complex objects or agents being modeled
 - I have a simple specific idea for this in mind, to be written down shortly
-- it seems that the edges shall model the transcoding/propagation of information, but in the long run, I also intend to utilize them to express interactions with physical objects, esp. resources 
+- it seems that the edges shall model the transcoding/propagation of [[information]], but in the long run, I also intend to utilize them to express interactions with physical objects, esp. resources 
 - that means, loosely speaking, working with a network in which information propagation and physical interactions are coexistent (maybe interchangeable?)

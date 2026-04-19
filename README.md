@@ -1,4 +1,4 @@
-## Turning concerns with autonomous machines into operational relief
+### Turning concerns with autonomous machines into operational relief
 Continuous alignment comes in many forms and the essence of the idea is to keep finding opportunities for identifying them in different application areas. To both illustrate that and seed execution of exemplary agendas for it, this repo documents several closely connected research activities following this pattern:
 - An AI risk can be identified in this shape
 	- Some resource is being committed to ML of a model that performs impressively enough to be perceived advantageous over alternatives. [^2] [^3]
@@ -18,13 +18,22 @@ This is intended to establish an engineering approach to the 2 highlighted secur
 
 The rest of the content of the repo belongs to examples of the research pattern, i. e. continuous alignment, in use.
 ### Status
+files in focus (are checked, not in focus but in scope are unchecked)
+- [x] [[deter]]
+- [ ] [[defuse]]
+- [ ] [[theory core]]
+- [ ] [[scale-free]]
+- [x] [[information]]
+#### 18. 04. 2026.
+Progressing with adding new elements to the outline of the theory and a little to the deterrence agenda. Prioritizing
+1. sketch of every idea somewhere
+2. put them in place, connect what's appropriate
+3. add detail
 #### 17. 04. 2026.
-The reporting format is undecided. Previously an interactive format was envisioned (choose your own adventure style, the curious can start reading [0.md](0.md) and not bother too much about the filenames, for more substance, keep reading). It has turned out to add a layer of complexity that was not helping with communication. It may be useful later.
-
-Files in focus: [[defuse]], [[deter]], [[theory core]]
-
-For now I'll be focusing on content and less so on presenting in the prettiest format. I intend to make daily commits until the initial work on both security improvement types is introduced just enough to lend itself to collaboration.
-
+The reporting format is undecided.
+- Previously: interactive envisioned (starting with [0.md](0.md))
+- layer of complexity, put on hold
+### Calling for collaboration
 These days, although I have prepared notes, I have little time to write them down properly, I'm happy to be contacted about them anyway.
 
 [^2]: Advantage is defined as: constrained by a budget allocation bracket to the class of tasks to carry out, which model is expected to consume the least in preference-weighted collateral cost, also discounting opportunities.
