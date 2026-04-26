@@ -1,4 +1,5 @@
 It is in the common discourse around alignment, esp. inner vs outer alignment, that key ingredients of AI -- activation, optimization, selection and control etc. -- are also ubiquitous in robust natural processes; evolution and market dynamics being often cited examples. If we want to capture living beings, machines, possibly also institutions with the same model, then we are preparing to find scale-free phenomena. This is a tentative first description of what I'm envisioning:
+- the role of sensory channels in [[information#in coarse-graining]] is intended to be a scale-free model for making the subjective nature of recognizing different objects (in particular, as resources by [[embedding autonomous machines#Resourceful agents]]) explicit
 - increasing fitness by optimization: an improvement process involves a preexisting, high-reliability (seemingly inert) basis, which can produce judgement about how closely something else approximates it, e. g.
 	- NN weights tuned by backpropagation based on "verified" training dataset
 	- (poorly understood by me) performance on application-specific benchmarks improved by finetuning, LoRA...

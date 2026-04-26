@@ -19,22 +19,18 @@ This is intended to establish an engineering approach to the 2 highlighted secur
 The rest of the content of the repo belongs to examples of the research pattern, i. e. continuous alignment, in use.
 ### Status
 files in focus (are checked, not in focus but in scope are unchecked)
-- [x] [[deter]]
+- [ ] [[deter]]
 - [ ] [[defuse]]
 - [ ] [[theory core]]
-- [ ] [[scale-free]]
+- [x] [[scale-free]]
 - [x] [[information]]
-#### 18. 04. 2026.
-Progressing with adding new elements to the outline of the theory and a little to the deterrence agenda. Prioritizing
-1. sketch of every idea somewhere
-2. put them in place, connect what's appropriate
-3. add detail
-#### 17. 04. 2026.
-The reporting format is undecided.
-- Previously: interactive envisioned (starting with [0.md](0.md))
-- layer of complexity, put on hold
+- [x] [[22]]
+- [ ] [[12]]
+- [x] [[collapse]]
+- [x] [[embedding autonomous machines]]
+- [ ] [[outliers]]
 ### Calling for collaboration
-These days, although I have prepared notes, I have little time to write them down properly, I'm happy to be contacted about them anyway.
+These days, although I have prepared notes, I have little time to write them down properly, I'm happy to be contacted about them anyway. 
 
 [^2]: Advantage is defined as: constrained by a budget allocation bracket to the class of tasks to carry out, which model is expected to consume the least in preference-weighted collateral cost, also discounting opportunities.
 
