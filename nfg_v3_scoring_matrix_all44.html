@@ -1,0 +1,355 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+h2.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.wrap{padding:1rem 0;overflow-x:auto;font-family:var(--font-sans,sans-serif)}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;align-items:center}
+.controls label{font-size:12px;color:var(--color-text-secondary)}
+select{font-size:12px;padding:3px 6px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-primary);color:var(--color-text-primary)}
+table{border-collapse:collapse;font-size:10px;width:100%}
+th,td{padding:4px 5px;border:0.5px solid var(--color-border-tertiary);text-align:center;white-space:nowrap}
+th{font-weight:500;font-size:9px;background:var(--color-background-secondary);color:var(--color-text-secondary)}
+th.feat{text-align:left;min-width:140px;position:sticky;left:0;z-index:2;background:var(--color-background-secondary)}
+td.feat{text-align:left;font-size:9px;color:var(--color-text-secondary);position:sticky;left:0;background:var(--color-background-primary);z-index:1}
+td.feat .fn{font-size:9px;font-weight:500;color:var(--color-text-primary)}
+td.feat .fs{font-size:8px;color:var(--color-text-tertiary)}
+.cat-hdr{background:var(--color-background-secondary);font-weight:500;font-size:9px;color:var(--color-text-primary);text-align:left;padding-left:6px;position:sticky;left:0}
+.agg{font-weight:500;background:var(--color-background-secondary)}
+.s0{color:var(--color-text-tertiary)}
+.s1{color:#888780}
+.s2{color:#185FA5}
+.s3{color:#0F6E56;font-weight:500}
+.tb{font-style:italic}
+.legend{display:flex;gap:12px;font-size:10px;color:var(--color-text-secondary);margin-bottom:8px;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:3px}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.batch-sep td{border-top:2px solid var(--color-border-primary)!important}
+</style>
+<div class="wrap">
+<h2 class="sr-only">Non-firing guns v3 scoring matrix: 44 real-life stories scored across 20 features from the analytical framework</h2>
+<div class="controls">
+  <label>Filter batch:</label>
+  <select id="batchSel"><option value="all">All batches</option><option value="1">Batch 1</option><option value="2">Batch 2</option><option value="4">Batch 4</option><option value="5">Batch 5</option></select>
+  <label style="margin-left:8px">Highlight story:</label>
+  <select id="storySel"><option value="">—</option></select>
+</div>
+<div class="legend">
+  <span><span class="dot" style="background:#ccc"></span>0 absent</span>
+  <span><span class="dot" style="background:#888780"></span>1 weak</span>
+  <span><span class="dot" style="background:#185FA5"></span>2 clear</span>
+  <span><span class="dot" style="background:#0F6E56"></span>3 conspicuous</span>
+  <span style="font-style:italic;color:var(--color-text-tertiary)">italic = tiebreaker applied</span>
+</div>
+<table id="mat"></table>
+</div>
+<script>
+const features=[
+  {id:"A1",name:"Preparation failure",cat:"A"},
+  {id:"A2",name:"Assumption failure",cat:"A"},
+  {id:"A3",name:"Divergent group reasoning",cat:"A"},
+  {id:"B1",name:"Asymm. info propagation",cat:"B"},
+  {id:"B2",name:"Asymm. observation level",cat:"B"},
+  {id:"C1",name:"Structural veto point",cat:"C"},
+  {id:"C2",name:"Noise",cat:"C"},
+  {id:"C3",name:"Doubt",cat:"C"},
+  {id:"C4",name:"Misguided resistance",cat:"C"},
+  {id:"C5",name:"Heroic judiciousness",cat:"C"},
+  {id:"C6",name:"Flinching",cat:"C"},
+  {id:"D1",name:"Trigger specificity",cat:"D"},
+  {id:"D4",name:"Multi-channel confirmation",cat:"D"},
+  {id:"D5",name:"De-escalation ladders",cat:"D"},
+  {id:"D6",name:"Temporal deceleration",cat:"D"},
+  {id:"D7",name:"Polarization disruption",cat:"D"},
+  {id:"E1",name:"Macro-state vs conflict",cat:"E"},
+  {id:"E2",name:"Stable sub-ensemble",cat:"E"},
+  {id:"E3",name:"Asymm. propagation (pop.)",cat:"E"},
+  {id:"E4",name:"Confidence challenges",cat:"E"},
+];
+
+// Stories: [name, batch, A1,A2,A3, B1,B2, C1,C2,C3,C4,C5,C6, D1,D4,D5,D6,D7, E1,E2,E3,E4]
+// tb flags encoded separately below as object keyed by "storyIdx-featIdx" with +1/-1
+// Scores are POST-tiebreaker
+
+const stories=[
+// Batch 1 (15)
+["Petrov 1983","1", 2,3,3, 2,3, 3,2,3,1,0,0, 3,2,1,0,0, 3,1,3,3],
+["Arkhipov 1962","1", 2,2,3, 1,2, 3,3,0,1,0,0, 3,3,2,0,1, 3,1,3,3],
+["Norwegian rocket 1995","1", 3,3,3, 3,3, 3,3,0,2,1,0, 3,3,1,1,0, 2,0,3,3],
+["Berlin Wall 1989","1", 2,2,3, 3,2, 1,3,0,1,0,3, 1,0,3,2,2, 3,2,3,3],
+["Spanish transition 1975","1", 2,1,2, 2,2, 3,1,0,2,2,2, 1,1,3,2,3, 3,3,3,2],
+["Sadat 1977","1", 1,2,3, 2,2, 2,1,0,1,0,3, 1,0,3,1,3, 3,2,2,3],
+["Cold fusion 1989","1", 3,2,2, 2,3, 0,3,0,2,0,2, 0,3,0,0,2, 2,0,3,3],
+["BICEP2 2014","1", 1,3,2, 2,3, 0,3,0,2,1,0, 0,3,0,1,1, 2,0,3,3],
+["Michelson-Morley 1887","1", 1,3,1, 1,2, 0,2,0,2,1,0, 0,3,0,0,0, 2,0,2,1],
+["Iran-Contra 1986","1", 2,2,2, 2,2, 1,2,0,2,0,3, 0,1,2,2,2, 2,2,3,2],
+["Mueller 2017","1", 2,1,3, 2,2, 0,1,0,3,1,0, 0,0,1,1,2, 2,1,3,2],
+["Franklin 1845","1", 3,2,2, 0,3, 0,1,0,1,0,0, 0,0,0,2,0, 2,2,2,2],
+["Church Committee 1975","1", 1,2,2, 2,2, 1,2,0,2,2,0, 0,1,1,2,1, 2,2,3,2],
+["Good Friday 1998","1", 2,1,2, 2,1, 3,1,0,1,2,0, 2,1,3,2,3, 3,3,2,2],
+["South Africa 1990","1", 2,1,2, 2,1, 3,2,0,1,2,0, 2,1,3,2,3, 3,3,2,2],
+// Batch 2 (10)
+["Able Archer 83","2", 3,3,3, 3,3, 2,3,0,2,1,0, 3,2,2,2,1, 3,1,3,3],
+["Checkpoint Charlie 1961","2", 1,2,2, 2,2, 3,2,0,1,2,1, 2,1,3,2,2, 3,2,3,2],
+["Suez 1956","2", 2,3,2, 2,3, 1,1,0,3,0,0, 2,0,2,2,2, 3,2,3,2],
+["Kargil 1999","2", 3,2,3, 2,3, 2,1,0,3,0,0, 2,1,3,2,3, 3,2,3,3],
+["LTCM 1998","2", 2,3,2, 2,2, 0,2,0,3,2,0, 0,1,2,2,2, 2,2,3,2],
+["Black Monday 1987","2", 2,2,2, 2,2, 1,2,0,2,3,0, 0,2,2,1,1, 2,2,3,2],
+["Three Mile Island 1979","2", 3,1,2, 1,2, 1,2,0,2,3,0, 0,2,1,1,0, 2,3,2,3],
+["SARS 2003","2", 1,2,2, 2,2, 2,2,0,2,2,0, 1,2,2,2,2, 3,2,3,2],
+["OPERA neutrinos 2011","2", 2,1,3, 2,2, 0,3,0,2,2,0, 0,3,1,2,0, 2,0,3,3],
+["N-rays 1903","2", 1,2,2, 1,2, 0,3,0,1,2,2, 0,2,0,0,3, 2,0,3,3],
+// Batch 4 (8)
+["Yom Kippur 1973","4", 3,2,3, 3,2, 3,2,0,2,1,0, 3,2,3,2,2, 3,2,3,3],
+["Carnation Revolution 1974","4", 3,2,2, 3,3, 2,3,0,1,2,1, 2,1,3,2,3, 3,3,3,2],
+["Swine Flu 1976","4", 3,3,2, 2,2, 0,2,0,2,0,2, 0,0,0,1,0, 2,0,3,3],
+["Velvet Revolution 1989","4", 2,3,2, 3,3, 1,3,0,2,0,1, 2,1,3,1,2, 3,2,3,3],
+["Y2K 1999","4", 2,3,3, 2,2, 0,2,0,2,2,1, 0,1,0,2,0, 2,0,3,3],
+["Operation Parakram 2001","4", 3,2,3, 2,2, 2,2,0,2,1,0, 2,1,3,3,2, 3,2,3,3],
+["Flash Crash 2010","4", 2,3,2, 2,2, 1,3,0,2,3,0, 0,2,1,0,0, 2,1,3,3],
+["Draghi 2012","4", 1,3,2, 3,2, 3,1,0,1,3,0, 0,0,2,1,1, 3,1,3,2],
+// Batch 5 (8)
+["Berlin Airlift 1948","5", 3,2,2, 2,2, 3,2,0,1,3,0, 2,1,3,3,1, 3,3,3,2],
+["Apollo 13 1970","5", 3,1,1, 1,2, 1,2,0,1,3,2, 0,1,1,2,0, 2,2,2,3],
+["Ozone/Montreal 1974","5", 2,3,2, 2,3, 1,3,0,1,2,0, 0,2,2,2,3, 3,2,3,2],
+["Greek debt 2015","5", 1,3,3, 3,3, 3,1,3,1,0,0, 0,1,3,2,2, 3,1,3,2],
+["Polywater 1966","5", 1,3,2, 2,3, 0,3,0,2,2,1, 0,2,0,0,3, 2,0,3,3],
+["Fukushima Unit4 2011","5", 3,2,2, 1,2, 1,3,0,2,3,0, 0,2,1,2,0, 2,2,2,3],
+["Taiwan Strait 1958","5", 2,3,2, 2,2, 3,2,3,1,1,0, 3,2,2,2,1, 3,1,3,2],
+["Acid Rain 1970","5", 2,2,2, 2,2, 0,2,0,2,2,1, 0,1,3,2,3, 2,1,2,2],
+];
+
+// Tiebreaker flags: "storyIdx-featIdx" -> "+" or "-"
+// (featIdx = 0-based index into the 20-feature array)
+const tbFlags={
+// Batch 1
+"0-1":"+","0-0":"-",           // Petrov: A tie A1=2,A2=3,A3=3 → A2,A3 tied→ A3 standout+1→3 already; A1 weakest −1→ already coded above
+// Note: scores above already incorporate tiebreakers; tb flags mark which cells were adjusted
+// Petrov A: A1=2,A2=3,A3=3 → A2&A3 tied standouts, A1 weakest → A1-1 done; A2 or A3 +1 → A2 slightly less central (satellite → assumption) → A3+1 done
+"0-2":"+",                     // A3 tiebreaker +
+// Petrov C: C1=3,C2=2,C3=3 → C2 weakest -1→ already
+"0-7":"-",
+// Arkhipov A: A1=2,A2=2,A3=3 → A3 standout +1 already; A1&A2 tied weak → no single weakest, no further adjustment
+// Arkhipov C: C1=3,C3=0,C2=3 → C3 weakest already
+"1-9":"-",  // C5→0 weakest in C for Arkhipov (C1=3,C2=3,C4=1,C5=0,C6=0); C4 could get -1 too but C5/C6 at 0
+// Norwegian A: all 3s → no tie
+// Norwegian C: C1=3,C2=3,C4=2,C5=1 → C5 weakest -1→0 but 0 already possible; C1&C2 tied standout → no single winner
+"2-10":"-",
+// Berlin Wall B: B1=3,B2=2 → B1 standout +1 already; only 2 features in B so easy
+"3-3":"+","3-4":"-",
+// Berlin Wall C: C2=3,C6=3 tied standouts → both conspicuous; C1=1 weakest -1→0
+"3-5":"-",
+// Spanish C: C1=3,C4=2,C5=2,C6=2 → C1 standout, C4/C5/C6 tied weak → weakest of those: C5 (pre-designed protocols less prominent) -1→1
+"4-10":"-",
+// Spanish D: D5=3,D6=2,D7=3 → D5&D7 tied standouts; D4=1 clearly weaker, D6=2 → no clear single weakest among D features needing adjust → D4 weakest already
+// Sadat A: A2=2,A3=3 → A3 standout already; A1=1 weakest already; no tiebreaker needed (natural spread)
+// Sadat C: C6=3 clearly standout; C1=2,C2=1 → C2 weakest -1→0
+"5-7":"-",
+// Cold fusion A: A1=3,A2=2,A3=2 → A1 standout already; A2&A3 tied → neither clearly weaker; no adjust beyond natural spread
+// Cold fusion C: C2=3,C4=2,C6=2 → C2 standout +1 impossible (at 3); C4&C6 tied → C4 vs C6: C4 (paradigm confusion) slightly weaker than C6 (Pons' premature announce) → C4 -1
+"6-9":"-",
+// BICEP2 A: A2=3,A3=2,A1=1 → natural spread; A2 standout +1→ already 3; no adjustment needed
+// BICEP2 C: C2=3,C4=2,C5=1 → C2 standout; C5 weakest -1→0
+"7-10":"-",
+// Michelson A: A2=3,A1=1,A3=1 → A2 standout, A1&A3 tied weakest → adjust A1 or A3; A1 (prep failure) slightly weaker → A1 -1→0
+"8-0":"-",
+// Michelson C: C2=2,C4=2 → tie; C5=1 weakest, C3=0 → C5 -1→0
+"8-10":"-",
+// Iran-Contra A: all 2s → tie; A3 (divergent reasoning very prominent in the Ollie North TV hearings) standout +1→3; A1 (congressional immunity as preparation failure) vs A2 → A1 slightly weaker -1→1
+"9-2":"+","9-0":"-",
+// Iran-Contra C: C6=3 standout; C2=2,C3=0 → C2 no special adjustment; C3&C4 tied at ~0/2 → C3 weakest already
+// Mueller C: C3=3 standout; C2=1 weakest -1→0
+"10-7":"-",
+// Franklin A: A1=3,A2=2,A3=2 → A1 standout; A2&A3 tied → A3 (divergent reasoning limited given silence) -1→1
+"11-2":"-",
+// Franklin B: B1=0,B2=3 → B2 standout +1 impossible; B1 weakest -1→ already 0
+// Church A: A2=2,A3=2 tied; A1=1 weakest; no single standout so no +; A1 already -1 would be 0 → skip
+// Good Friday C: C1=3,C5=2,C2=1 → C1 standout; C2 weakest -1→0
+"13-7":"-",
+// South Africa C: same as Good Friday structure
+"14-7":"-",
+
+// Batch 2
+// Able Archer A: all 3s → no tiebreaker
+// Able Archer C: C2=3,C4=2,C5=1 → C2 standout; C5 weakest -1→0
+"15-10":"-",
+// Checkpoint C: C1=3,C5=2,C2=2,C6=1 → C1 standout; C6 weakest (already 1) -1→0
+"16-11":"-",
+// Suez A: A2=3,A1=2,A3=2 → A2 standout; A1&A3 tied → A3 slightly weaker (divergent reasoning less prominent) -1→1
+"17-2":"-",
+// Suez C: C4=3,C1=1,C2=1 → C4 standout; C1&C2 tied weak → C1 weakest (no structural veto exists in Suez) -1→0
+"17-5":"-",
+// Kargil C: C4=3,C1=2,C2=1 → C4 standout; C2 weakest -1→0
+"18-7":"-",
+// LTCM A: A2=3,A1=2,A3=2 → A2 standout; A1&A3 tied → A1 (prep failure limited) -1→1
+"19-0":"-",
+// LTCM C: C4=3,C2=2,C5=2 → C4 standout; C2&C5 tied → C2 (noise below agent level) slightly weaker given clarity of info-poverty in C4 → C2 -1→1
+"19-7":"-",
+// Black Monday A: all 2s → A2 (assumption failure in portfolio insurance models) slightly standout +1→3; A3 weakest -1→1
+"20-1":"+","20-2":"-",
+// Black Monday C: C5=3,C2=2,C4=2 → C5 standout; C2&C4 tied → C4 slightly weaker -1→1
+"20-9":"-",
+// TMI A: A1=3,A2=1,A3=2 → natural spread; no tiebreaker needed
+// TMI C: C5=3,C4=2,C2=2 → C5 standout; C2&C4 tied → C2 weakest -1→1
+"21-7":"-",
+// SARS C: C1=2,C2=2,C4=2,C5=2 → four-way tie; C1 slightly stands out (WHO veto function) +1→3; C2 weakest (noise less prominent) -1→1
+"22-5":"+","22-7":"-",
+// OPERA C: C2=3,C4=2,C5=2 → C2 standout; C4&C5 tied → C5 weakest -1→1
+"23-10":"-",
+// N-rays C: C2=3,C4=1,C5=2,C6=2 → C2 standout; C4 weakest -1→0
+"24-9":"-",
+
+// Batch 4
+// Yom Kippur A: A1=3,A3=3 tied standouts; A2=2 → A2 weakest -1→1
+"25-1":"-",
+// Yom Kippur C: C1=3,C2=2,C4=2 → C1 standout; C2&C4 tied → C4 (misguided resistance less prominent) -1→1
+"25-9":"-",
+// Carnation B: B1=3,B2=3 → tied; no adjustment (only 2 features)
+// Carnation C: C2=3,C5=2,C6=1 → C2 standout; C6 weakest -1→0
+"26-11":"-",
+// Swine Flu A: A1=3,A2=3 tied standouts; A3=2 weakest -1→1
+"27-2":"-",
+// Swine Flu C: C4=2,C2=2,C6=2 → three-way tie; C4 standout (clearest info-impairment) +1→3; C6 weakest -1→1
+"27-8":"+","27-11":"-",
+// Velvet A: A2=3,A3=2,B features: separate. In A: A2=3,A1=2,A3=2 → A2 standout; A1&A3 tied → A1 slightly weaker -1→1
+"28-0":"-",
+// Velvet C: C2=3,C4=2,C6=1 → C2 standout; C6 weakest -1→0
+"28-11":"-",
+// Y2K A: A2=3,A3=3 tied standouts; A1=2 weakest -1→1
+"29-0":"-",
+// Y2K C: C4=2,C2=2,C5=2,C6=1 → three-way tie on 2s; C5 (judiciousness prominent in remediation) +1→3; C6 weakest -1→0
+"29-10":"+","29-11":"-",
+// Parakram C: C4=2,C2=2 → tie; C4 (info-impaired resistance) slightly standout; C2 slightly weaker → C4+1→3, C2-1→1 ... but C4=3 already in raw; check: raw C4=3 so already handled
+// Flash Crash A: A2=3,A1=2,A3=2 → A2 standout; A1&A3 tied → A3 slightly weaker -1→1
+"31-2":"-",
+// Flash Crash C: C5=3,C2=3 tied; C3=0 weakest already; C4=2 → no further adjustment needed beyond natural spread
+// Draghi A: A2=3,A3=2,A1=1 → A2 standout; A1 weakest -1→0
+"32-0":"-",
+// Draghi C: C1=3,C5=3 tied standouts; C2=1 weakest -1→0
+"32-7":"-",
+
+// Batch 5
+// Airlift C: C5=3,C1=3 tied; C3=0,C6=0 weakest already; C2=2,C4=1 → C4 weakest non-zero -1→0
+"33-9":"-",
+// Apollo A: A1=3,A2=1,A3=1 → A1 standout; A2&A3 tied → A2 slightly stronger (assumption failure about LM lifeboat) → A3 -1→0
+"34-2":"-",
+// Apollo C: C5=3,C6=2,C2=2 → C5 standout; C2&C6 tied → C2 weaker -1→1
+"34-7":"-",
+// Ozone A: A2=3,A1=2,A3=2 → A2 standout; A1&A3 tied → A1 slightly weaker (not poor preparation per se) -1→1
+"35-0":"-",
+// Ozone C: C2=3,C5=2,C4=1 → C2 standout; C4 weakest -1→0
+"35-9":"-",
+// Greek debt B: B1=3,B2=3 → tied; no single standout
+// Greek debt C: C3=3 clearly standout (Tsipras doubts/no exit plan); C1=3 also standout → tied; C2=1 weakest -1→0
+"36-7":"-",
+// Polywater C: C2=3,C4=2,C5=2,C6=1 → C2 standout; C6 weakest -1→0; C4&C5 tied no further adjust
+"37-11":"-",
+// Fukushima C: C5=3,C2=3 tied; C4=2,C3=0 → C3 weakest already; C4 no further adjust
+// Taiwan A: A2=3,A1=2,A3=2 → A2 standout; A1&A3 tied → A1 slightly weaker -1→1
+"38-0":"-",
+// Taiwan C: C1=3,C3=3 tied standouts; C5=1,C4=1 tied weakest → C5 -1→0 (protocol less prominent than C3 doubt)
+"38-10":"-",
+// Acid Rain A: all 2s → flat tie; A2 (market/patent mechanism = assumption failure about regulatory path) +1→3; A3 weakest (divergence less sharp) -1→1
+"39-1":"+","39-2":"-",
+// Acid Rain C: C4=2,C2=2,C5=2,C6=1 → three-way tie; C4 (misguided resistance clearest) +1→3; C6 weakest -1→0
+"39-8":"+","39-11":"-",
+// Acid Rain D: D5=3,D7=3 tied standouts; D4=1 weakest -1→0; D1=0 already
+"39-13":"-",
+};
+
+// Apply tiebreaker adjustments to raw data
+const data=stories.map((s,si)=>{
+  const arr=[...s.slice(2)];
+  for(let fi=0;fi<20;fi++){
+    const key=`${si}-${fi}`;
+    if(tbFlags[key]==="+") arr[fi]=Math.min(3,arr[fi]+1);
+    else if(tbFlags[key]==="-") arr[fi]=Math.max(0,arr[fi]-1);
+  }
+  return arr;
+});
+
+const catColors={"A":"#E8F4F8","B":"#EAF4EA","C":"#FFF0F0","D":"#FFF8E8","E":"#F0EAF8"};
+const catOrder=["A","B","C","D","E"];
+
+function buildTable(filteredIndices){
+  const mat=document.getElementById('mat');
+  mat.innerHTML='';
+
+  // story header
+  const hdr=document.createElement('tr');
+  hdr.innerHTML='<th class="feat">Feature</th>';
+  filteredIndices.forEach(si=>{
+    const s=stories[si];
+    const nm=s[0].length>16?s[0].substring(0,14)+'…':s[0];
+    hdr.innerHTML+=`<th title="${s[0]}" style="max-width:52px;white-space:normal;font-size:8px;line-height:1.2">${nm}</th>`;
+  });
+  hdr.innerHTML+=`<th class="agg">Row<br>total</th><th style="color:var(--color-text-secondary);font-size:9px">Max</th>`;
+  mat.appendChild(hdr);
+
+  // story totals
+  const stTotals=filteredIndices.map(()=>0);
+
+  catOrder.forEach(cat=>{
+    const catFeats=features.filter(f=>f.cat===cat);
+    const catRow=document.createElement('tr');
+    catRow.innerHTML=`<td colspan="${filteredIndices.length+3}" class="cat-hdr" style="background:${catColors[cat]}">${cat}. ${{"A":"Indicators","B":"Observation & info","C":"Agent-level mechanisms","D":"Technical & structural","E":"Population dynamics"}[cat]}</td>`;
+    mat.appendChild(catRow);
+
+    catFeats.forEach(feat=>{
+      const fi=features.indexOf(feat);
+      const row=document.createElement('tr');
+      let cells=`<td class="feat" style="background:${catColors[cat]}"><div class="fn">${feat.id} ${feat.name}</div></td>`;
+      let rowSum=0;
+      filteredIndices.forEach((si,idx)=>{
+        const v=data[si][fi];
+        const tb=tbFlags[`${si}-${fi}`];
+        const cl=v===0?'s0':v===1?'s1':v===2?'s2':'s3';
+        cells+=`<td class="${cl}${tb?' tb':''}" title="${stories[si][0]}: ${feat.id}=${v}${tb?' (tiebreaker '+tb+'1)':''}">${v}</td>`;
+        rowSum+=v;
+        stTotals[idx]+=v;
+      });
+      cells+=`<td class="agg">${rowSum}</td><td style="color:var(--color-text-secondary);font-size:9px">${3*filteredIndices.length}</td>`;
+      row.innerHTML=cells;
+      mat.appendChild(row);
+    });
+  });
+
+  // totals row
+  const totRow=document.createElement('tr');
+  totRow.innerHTML='<td class="feat agg"><div class="fn">Story total</div></td>';
+  stTotals.forEach(t=>{
+    totRow.innerHTML+=`<td class="agg" style="font-size:10px">${t}</td>`;
+  });
+  const grandTotal=stTotals.reduce((a,b)=>a+b,0);
+  totRow.innerHTML+=`<td class="agg">${grandTotal}</td><td style="color:var(--color-text-secondary);font-size:9px">${20*3*filteredIndices.length}</td>`;
+  mat.appendChild(totRow);
+}
+
+function getFilteredIndices(){
+  const b=document.getElementById('batchSel').value;
+  return stories.map((_,i)=>i).filter(i=>b==='all'||stories[i][1]===b);
+}
+
+function init(){
+  const sel=document.getElementById('storySel');
+  stories.forEach((s,i)=>{
+    const o=document.createElement('option');
+    o.value=i; o.textContent=s[0];
+    sel.appendChild(o);
+  });
+
+  document.getElementById('batchSel').addEventListener('change',()=>{
+    buildTable(getFilteredIndices());
+  });
+
+  document.getElementById('storySel').addEventListener('change',e=>{
+    const idx=e.target.value;
+    if(!idx) return;
+    const cells=document.querySelectorAll(`td[title^="${stories[idx][0]}"]`);
+    cells.forEach(c=>c.style.outline='2px solid #D85A30');
+    setTimeout(()=>cells.forEach(c=>c.style.outline=''),2500);
+  });
+
+  buildTable(getFilteredIndices());
+}
+init();
+</script>

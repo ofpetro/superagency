@@ -5,9 +5,55 @@ For now, note that fixing $(v_1,v_2),\Lambda$ is a continuous functional of $\ph
 
 Implicit in the above suggestion is that the endpoints belong to vector spaces themselves. This also hints at the idea that the set of endpoints and contact events as vertices and edges, respectively, can be represented by quivers.
 
-Work in progress as of last update
-- I am familiarizing myself with the quiver representation of deep linear networks in learning theory
-- multi-agent systems where at least one agent consists of a quiver but so is the representation of their connection is interesting because it raises questions about [[scale-free]] characteristics of systems that decompose into agents, possibly at multiple levels of hierarchy
-- one of the general directions where I intend to take this theory is defining a transformation of quivers (or the underlying graph) where a set of vertices -- satisfying certain conditions -- [[collapse]] into a single one, which corresponds to identification of complex objects or agents being modeled
-- it seems that the edges shall model the transcoding/propagation of [[information]], but in the long run, I also intend to utilize them to express interactions with physical objects, esp. resources 
-- that means, loosely speaking, working with a network in which information propagation and physical interactions are coexistent (maybe interchangeable?)
+### agents in the contact network
+So far "endpoints" have remained mysterious -- since contact events are defined via the propagation of information or a physical signal, and endpoints designated in general as any 2 points in the propagation path -- it is natural to ask how they can best be made use of? The aim is that they be the atomic objects necessary for a contact event, so anything polymorphic (basically anything we care about) comprises multiple endpoints. This motivates the notion of the [[collapse]] of a subnetwork into fewer endpoints or contact events: we may want to favor a network representation over another if it shows different (amount of) details. Finally, the conceptual role of an endpoint can be realized in wildly different substrates.[^2] Note that the collapse rule is highly flexible and admits great freedom in converting between representations that are substrate-dependent. That is to say such collapse rules are desirable that can consistently encode different conceptualizations of roughly the same object.[^3]
+
+In particular, we typify endpoints this way to make the possibility of "hybrids" or "mixtures" of multiple collapses transparent, and enable thereby consistently modeling situations where effects across different levels of granularity can be transmitted.[^4] For our purposes, there is another benefit: it helps with interpreting the notion of embedded agents in agent foundations. Specifically, the challenge is that the theory posits agents, as opposed to dualistic ones, that are not clearly divided from their environment, furthermore they are part of it and and they can act affecting themselves just as the environment. That leads to ambiguity in determining the identity of the agent: its points of intervention are unevenly distributed, possibly across parts that are discernible and may even be ascribed agency in some (perhaps dualistic) sense... an ambiguity that _adds_ to the descriptive power of agent foundations as it leads to reasoning about more broadly identifiable instances of agency and more general claims about it.
+
+This needs to be more precisely formalized. Note that we are interested in ensembles of agents and collapsing (part of) them: this induces models of emergent agency, i. e. where agents at multiple levels of generality are characterized.
+
+**Definition**: if an ensemble of agents can be considered a smaller ensemble by coarse-graining and a yet smaller one by a further or a different coarse-graining, then call members of the intermediate one _fractional agents_.
+
+Type of fractional agents -- we require the following characteristics:
+- composition (and decomposition), an interpretation to the specific network collapse rule that creates them, within a "classical" theory
+- training can not universally be described as EUM and possibly preferences are not even properly defined relations at some coarse-graining level 
+- consumption of resources at some-coarse-graining level, interactions in which some other object (or fractional agent) loses structure and provides energy to the consuming fractional agent
+The core of the theory is about making these more rigorous ([[later]]). In my view these are the key characteristics of the way in which humans tend to blur the type difference between PC controlling and advisor agents and themselves, and consequently creating an emotionally approachable sense of (mis)alignment. This sense is not to be dismissed as it provides directions for alignment: on the one hand, informally ("what machine behavior are we unhappy with"), on the other hand, within this theory, as we aim to describe effects across different levels of granularity and memetic features' influence on materialistic, e. g. economic, function (of individuals, institutions, machines etc.), in the form of non-trivial mathematical theorems about the elusive ideal HMI to high-impact AI. In particular, in [[deter]]rence.
+### Work in progress as of last update
+(check: to touch immediately)
+- [ ] I am familiarizing myself with the quiver representation of deep linear networks in learning theory
+- [ ] multi-agent systems where at least one agent consists of a quiver but so is the representation of their connection is interesting because it raises questions about [[scale-free]] characteristics of systems that decompose into agents, possibly at multiple levels of hierarchy
+- [ ] one of the general directions where I intend to take this theory is defining a transformation of quivers (or the underlying graph) where a set of vertices -- satisfying certain conditions -- [[collapse]] into a single one, which corresponds to identification of complex objects or agents being modeled
+- [x] it seems that the edges shall model the transcoding/propagation of [[information]], but in the long run, I also intend to utilize them to express interactions with physical objects, esp. resources 
+- [ ] that means, loosely speaking, working with a network in which information propagation and physical interactions are coexistent (maybe interchangeable?)
+
+### training regimes
+The distinction between deterrence and defusing, although it comes from a security approach (in [[README]]), is reminiscent of an AIS topic: it is the distinction between stable, typical operational situations and unusual, illegal-origin observations -- rhyming with the challenge of in-distribution or out-of-distribution generalization. The parallel is rather weak, but it's worth noting that both can be aided by increasing confidence in sorting subsets of data based on their prominence in the natural process that they are sampled from. The direct ML relevance is addressed in [[outliers]], here let's focus on a conceptual, heuristic principle of increasing said confidence.
+
+Consider an RL agent $P$ and baseline reward signal $r'$: goal misgeneralization examples suggest that as the optimal reward signal is approached, the density of such policies that produce a behavior considered erratic when contrasted with intermediate-reward-achieving ones increases, i. e. the likelihood that the policy has been optimized by a spurious correlation between actions and rewards, and that it thus assigns overestimated credit to actions not intended to be captured by $r'$, increases. We wish that instead of optimizing beyond the limits of the expressivity of $r'$, the policy update rate of $Q$ automatically slowed down. Our idea: assume that on (the poorly shaped, human-supplied) $r'$ the "within limits" policies mostly resemble human-like ones and data that significantly shifts the value of $r'$ is significantly less frequent in training. Furthermore, that is due to some special quality which can be learned about said data. Then we actually wish to _filter out that data on the fly_, and train for agent inaction on it.
+
+This means we create a new reward $r=r'+s$ with a "suspicion score" $s$ that increases with the frequency that the agent remains inactive and flags a data point (subset), which would produce a sudden jump in the value of $r'$ if the policy were updated based on $r'$. What can we tell about such data point( subset)s? Keywords that should guide attention (cf. Iliad curriculum...), look these up and implement a point classification:
+- high leverage points
+- high entropy, low mutual information points
+- ergodicity
+- point permutation
+- edge of stability
+- phase transitions, susceptibilities
+- quantum state identification
+This classification and suspicion training is crucial to the idea that the limits to the applicability of its policy can be learned by the agent.[^1] Arguably, it is more complicated to apply it in the present, most general agent model, so as a proof of concept we shall properly formalize and test it in simple RL experiments. We look for a regime of the input data distribution in which there's high confidence about the action-reward mapping, i. e. credit assignment and another regime where action is deferred. Eventually we hope to see analogous behavior in fractional agents, too, so that they effectively regulate the resource that gets allocated to them.
+
+### uncertainties in decision-making
+this is a more serious part, get it right...
+- meta-level indicative
+- data-inherent
+- prior
+- stakes prior
+- approximation complexity discount
+
+[^1]: Admittedly this wording "limits to the applicability of its policy" is inconveniently vague but more precision in it can be expected with a more rigorous formalization of $s$.
+
+[^2]: To give a moderately detailed example we may consider a DNA molecule. At a higher granularity we can have different contact events for e. g.: its physical environment (adhesion to a surface, heat exchange), chemical environment (pH, enzymes, sequence sections), its encoded information (expressed proteins, mutations), its classification (which species' genome it is, how that fits into taxonomy). At a lower granularity we may simply omit some of these, lump them together if an "effective behavior" can capture what we care about in multiple (concurrent) contact events, consider an ensemble of molecules together etc. 
+
+[^3]: Most notably this applies to emergent phenomena. A collapse rule could describe how a large superposition of quantum states can also be viewed as a single light pulse, a series of light pulses as an excitation pattern in a sensor, a received electric signal as a symbol in some encoding, a set of symbols as a semantically correct word, a word as a primer for a concept represented in a neural network etc. The information propagation is different at each level of granularity but concurrence defines a correspondence between them.
+
+[^4]: Such is in certain cases perception as mentioned in [[information]] (as an extreme example, quantum measurement instruments), epigenetics, mechanistic interpretability etc.

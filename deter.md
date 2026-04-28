@@ -20,3 +20,16 @@ AI-specific key observations
 - opportunity in AI is to collectively steer its development in the direction where at the level of human involvement reward is artificially deflated
 	- e. g. for the same end state, higher reward is given if human involvement is less extensive and more indirect throughout a series of actions
 	- interchangeability of natural and artificial quality means humans should be dissuaded from solving a task with AI if it can be done without -- e. g. create virtual credit score for how essential your AI-use is, and require this credit for later access to it
+
+### within aligned training regime
+have [[causality in RL]] done first
+
+see [[theory core#training regimes]]
+
+where this takes us is projecting current observed value-based DT which is not optimal for later reward optimization, but RL naturally does that given good examples of credit attribution
+- "dumb and simple" if causality based: overweigh a predetermined pattern of events that lead to reward
+- "ingenious or malicious" if free: discovers unintuitive-policy valleys
+
+to move closer to optimum
+- learn to time-discount
+- understand which back-chaining is possible and which isn't

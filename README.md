@@ -17,18 +17,33 @@ Continuous alignment comes in many forms and the essence of the idea is to keep 
 This is intended to establish an engineering approach to the 2 highlighted security improvements that aims to dimension them and refine them, as well as the underlying theory simultaneously over iterations.[^5][^6][^7] During the process, LLM's should be intentionally leveraged and regular reflection on methods, especially in AI use, practiced.
 
 The rest of the content of the repo belongs to examples of the research pattern, i. e. continuous alignment, in use.
+### A possible entry point for reading
+I want this repo to go through 3 very fuzzily distinguishable stages
+1. collection philosophical, conceptual texts, mathematical notations, programming infrastructure choices; with many links to guide reading in a non-linear way[^8]
+2. appearance of actionable points, phrased as prompts; encouraged interaction from readers is to tweak them until response from LLM's seems genuinely helpful
+3. a self-modifying application with increasingly more complex and higher impact features; it has to contain guidelines to social experiments to test their features (here reader engagement is external to the product)
+
+The main normative is to be concise, precise, evocative, interesting and time-consuming, even if only for a specific type of reader.
+
+Beware that the text is intentionally trying to use an everyday linguistic style but not such vocabulary, and some jargon is chosen after very thorough deliberation to be consistent and connective to quantitative science\! To be informed about the lingo, see the [glossary](3.md) (“quotation”, unless clearly used differently, marks an entry in the glossary).
+
+[[theory core]] lays out the basics of the current, better informed version. Clicking through inline links all named (as in not numbered) files may momentarily not be possible, you're welcome to look at the file tree to see everything.
+
+To go through the remains of an early version, go to the [summary](4.md).
 ### Status
-files in focus (are checked, not in focus but in scope are unchecked)
+a read-through is timely to remove old and unclear or plain wrong bits
+files to work on (immediately: checked, near-term: unchecked)
 - [ ] [[deter]]
 - [ ] [[defuse]]
 - [ ] [[theory core]]
 - [x] [[scale-free]]
-- [x] [[information]]
-- [x] [[22]]
-- [ ] [[12]]
-- [x] [[collapse]]
-- [x] [[embedding autonomous machines]]
-- [ ] [[outliers]]
+- [ ] [[information]]
+- [ ] [[22]]
+- [x] [[12]]
+- [ ] [[collapse]]
+- [ ] [[embedding autonomous machines]]
+- [x] [[outliers]]
+- [x] [[causality in RL]]
 ### Calling for collaboration
 These days, although I have prepared notes, I have little time to write them down properly, I'm happy to be contacted about them anyway. 
 
@@ -43,3 +58,5 @@ These days, although I have prepared notes, I have little time to write them dow
 [^6]: The cases and theories should come from a diverse set of fields, as we shall see, the gamut from social sciences through natural sciences to mathematics and liberal arts is all relevant.
 
 [^7]: The optimistic position that the relevant theory has actually been discovered is assumed throughout.
+
+[^8]: Can a wiki be a good format?
