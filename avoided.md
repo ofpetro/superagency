@@ -8,6 +8,10 @@ Claude Sonnet 4.6, responses marked as
 
 A shortened, edited version of the transcript is presented.[^1] For an overview and qualitative evaluation, see [[#Discussion]]
 #### Seed
+[...]
+
+[[batch-0]]
+
 We wish to focus on the early stages, as the unexpected events start to unfold, e. g. the circumstances of the first steps to conflict deescalation. We expect that these are hard to disentangle causally, can involve haphazard or serendipitous incidents, in as much as the initially predicted scenarios are likely. Therefore let's explore a wider selection of reports that give more insight into this. Formal requirements: 
 1. Start by collecting a substantial list of (at least 10) stories in the narrative type. 
 2. These may be real-life accounts but fictional ones are acceptable, too, as long as not all are fictional.
@@ -99,47 +103,54 @@ LLM usage was targeted at the following (not all presented above):
 A few steps of quality assurance are in order (checked if in progress):
 - [ ] verify the fidelity and source credibility of stories
 - [x] cross-examine the scoring 
-I had the strongest doubts in the latter, less so because the LLM might not appreciate the nuance of the scoring directives or the stories, but simply because it might mix up tokens for the digits that symbolize the scores. When I started scoring myself, I initially had the impression that this doubt is justified and the scoring is off. Then upon further reflection I realized I should correct my scoring to the LLM's.
+I had the strongest doubts in the latter, less so because the LLM might not appreciate the nuance of the scoring directives or the stories, but simply because it might mix up tokens for the digits that symbolize the scores. When I started scoring myself, I initially had the impression that this doubt is justified and the scoring is off. Then upon further reflection I realized I should correct my scoring to match the LLM's.
 
 Of course, this is a soft and highly subjective task. Just as human variance, the LLM persona likely skews the results in one way, possibly one that my prompting style influenced. It is instructive to
 - try the scoring task possibly with multiple LLM's and optimally with base model access
 - gather scores from humans
 
-Another potential shortcoming is the incompleteness of the scoring system, to be further investigated, but --
-
 #### Initial exploration of feature statistics -- prompting again, responses only
-##### baseline check
-**The top correlation cluster: Good Friday × South Africa (r ≈ 0.97+)**
+A final potential shortcoming is the incompleteness of the scoring system. As a first, quick test of that, I examined the pairwise correlations, especially the highest and lowest-valued pairs to see whether the minor deviations in abstract narratives are accurately reflected, and whether the common patterns in the most abstractly different narratives are captured by the scores that they have in common, respectively.[^2]
+
+Tentative takeaways
+- in [[#The scientific false-positive cluster BICEP2 × Cold Fusion × N-rays × Polywater**]]  the distinction in C6 may be justified
+- [[#The economic mechanism cluster LTCM × Black Monday × Flash Crash × Draghi**]] is a bit more poorly understood but the suggested passive subcategory seems to be more of a false signal
+- in [[#What the lowest-correlated pairs share — and what that tells us**]]
+	- C3 is 0 in many cases, it may be off
+	- E being consistently high raises the suspicion that they are meaningless
+- [[#The specific character of each low-correlation pair**]] suggests a challenge of what counts as extra-agentic: systems designed by other agents or nature? -- the distinction is genuinely blurry
+- [[#The invariant residue**]] closing remark is interesting, possibly useful
+##### The top correlation cluster: Good Friday × South Africa (r ≈ 0.97+)**
 
 These two are the highest-correlated pair in the corpus — barely distinguishable by score. Both are long-armed peace transitions where armed insurrection had been operative for decades, both feature simultaneous symbolic disarmament by two sides, both are driven by small groups of key negotiators (C1 conspicuous), and both deploy de-escalation ladders as the primary resolution mechanism. The single meaningful divergence is C2 (Noise): South Africa scores slightly higher because the transition was surrounded by more unpredictable violence from third parties (right-wing Afrikaner factions, Inkatha) that didn't reach the negotiating principals — a cleaner instance of noise below the veto-point level. What the high correlation reveals structurally is a distinct sub-type: _the choreographed bilateral unloading_, where both parties must simultaneously reduce tension through a sequence of publicly witnessed symbolic acts. The gun doesn't misfire — it is formally disassembled in a ceremony.
 
 ---
 
-**The nuclear machine-error cluster: Petrov × Arkhipov × Norwegian Rocket**
+##### The nuclear machine-error cluster: Petrov × Arkhipov × Norwegian Rocket**
 
 These three form a tight sub-cluster (all pairwise r values high). All three share: extreme D1 (trigger specificity — the signal must look like a full-scale first strike to be actionable), high D4 (multi-channel confirmation — ground radar failing to corroborate satellite), high C1 (structural veto — an individual in the right architectural position), and near-zero D5/D7 (no de-escalation ladders needed; the non-firing is achieved before any negotiation becomes possible). The key distinguishing score in this cluster is C3 (Doubt): Petrov scores highest (his inaction was genuinely emergent and ambiguous — a protocol violation driven by engineering instinct), while Arkhipov scores on C2 (Noise — his presence aboard B-59 was an accident of command structure), and the Norwegian Rocket scores on A2 (assumption failure — the filing error that meant the military didn't know about the launch). So even within this extremely tight cluster, the three stories pivot on different proximate mechanisms: systemic false alarm + individual doubt (Petrov), command structure accident + individual resistance (Arkhipov), bureaucratic noise + institutional veto (Norway). The high correlation captures the shared _environment_ (Cold War nuclear hair-trigger), while the divergences capture the specific _mechanism_ that prevented the firing.
 
 ---
 
-**The scientific false-positive cluster: BICEP2 × Cold Fusion × N-rays × Polywater**
+##### The scientific false-positive cluster: BICEP2 × Cold Fusion × N-rays × Polywater**
 
 These four form a loose but consistent cluster with pairwise correlations in the 0.80–0.88 range. All share very high C2 (systemic noise below any individual level — contaminated samples, misread slides, loose cables), high D4 (peer replication as the multi-channel confirmation mechanism), and low or zero D5/D6/D7 (no temporal deceleration or de-escalation structure). The key structural difference within the cluster: Cold Fusion and N-rays score high on C6 (Flinching) — Pons' premature announcement and Blondlot's nationalistic investment represent agents becoming saturated or predictably susceptible — while BICEP2 and Polywater score this feature lower because the flaw was more purely instrumental (a loose cable, contaminated glass). This is an analytically useful distinction: _flaw in the person_ versus _flaw in the instrument_, even though both produce the same narrative arc.
 
 ---
 
-**The economic mechanism cluster: LTCM × Black Monday × Flash Crash × Draghi**
+##### The economic mechanism cluster: LTCM × Black Monday × Flash Crash × Draghi**
 
 A less tight cluster (correlations 0.72–0.83) united by zero or near-zero C3/C6 (no individual doubt or flinching), high C5 (Heroic Judiciousness — the Fed statement, the circuit breaker, the OMT announcement), and high E4 (systematic confidence challenges across the market ensemble). The structural contrast within the cluster is between _passive_ and _active_ heroic judiciousness: Black Monday and Flash Crash involve pre-designed mechanisms executing automatically (Greenspan's statement, the CME circuit breaker), while LTCM and Draghi involve individuals deliberately deploying a pre-existing structural capacity (the Fed's convening authority, the ECB's unlimited mandate) in a way that required personal judgment about timing and framing. The scores cannot distinguish these — C5 captures both — but the narrative difference is real and may suggest a future sub-feature.
 
 ---
 
-**The most analytically interesting pair: Checkpoint Charlie × Good Friday (r ≈ 0.84)**
+##### The most analytically interesting pair: Checkpoint Charlie × Good Friday (r ≈ 0.84)**
 
 This pair is the most structurally illuminating of all because it is _not_ obvious. The Berlin tank standoff (1961, 16 hours, resolved by a backchannel) and the Good Friday Agreement (28 years of armed conflict, resolved by years of negotiation) seem utterly different in scale and duration. What the correlation reveals: both score identically high on C1 (structural veto — both required one decisive actor to act, Kennedy/Khrushchev in the first, the small negotiating groups in the second), D5 (de-escalation ladders — choreographed reciprocal withdrawal vs. sequenced decommissioning), and D7 (polarization disruption — the US backchannel disrupts the Soviet-American polarity; external actors including the US and Irish diaspora disrupt the IRA-British polarity). The key divergence is time: Checkpoint Charlie scores near-zero on D6 (temporal deceleration) because the crisis was compressed into one night, while Good Friday scores high because the multi-year process was built on deliberate temporal structure. This suggests a structural insight: de-escalation ladders (D5) and polarization disruption (D7) are the _mechanism-invariant_ features of bilateral standoff resolution, while temporal deceleration (D6) is the _context-variable_ feature that determines whether the resolution is acute or chronic.
 
 ---
 
-**Cross-cutting observation**
+##### Cross-cutting observation**
 
 The ten highest correlations fall into four distinguishable structural sub-types, each with a characteristic feature signature:
 
@@ -153,8 +164,8 @@ The ten highest correlations fall into four distinguishable structural sub-types
 The high correlations are therefore genuinely reflective of deep structural similarity — not just surface domain overlap — while the residual divergences reliably point to the specific mechanism that differentiates two otherwise near-identical narratives.
 
 ---
-##### evaluation stress-testing
-**What the lowest-correlated pairs share — and what that tells us**
+
+##### What the lowest-correlated pairs share — and what that tells us**
 
 The most striking finding is that even the most structurally dissimilar pairs in this corpus share 8–11 features out of 20 within the diff < 2 threshold. That floor is telling: it means the non-firing gun category imposes a genuine minimum structural signature — certain features are present at similar levels across essentially all cases regardless of domain, mechanism, or era. The shared features across nearly every low-correlation pair are:
 
@@ -164,7 +175,7 @@ The most striking finding is that even the most structurally dissimilar pairs in
 
 ---
 
-**The specific character of each low-correlation pair**
+##### The specific character of each low-correlation pair**
 
 The ten pairs cluster into a recognisable pattern: in each case, one story is dominated by the _individual/machine agency_ cluster (C1–C6 and D1/D4 high) while the other is dominated by the _systemic/structural_ cluster (D5/D6/D7 high, C features mostly absent or inverted). The lowest-correlation pairs are precisely those where one story's non-firing mechanism operates through a decisive individual or mechanism resisting a cascade, and the other's operates through structural and negotiated de-escalation unfolding over extended time.
 
@@ -174,18 +185,20 @@ Similarly, **Franklin's Expedition × Swine Flu 1976** are both stories of spect
 
 ---
 
-**The invariant residue**
+##### The invariant residue**
 
 Across all ten lowest-correlation pairs, the features that consistently score similarly (diff < 2 in 9 or 10 of the 10 pairs) are:
 
-|Feature|Why it survives even across uncorrelated pairs|
-|---|---|
-|C3 = 0|Emergent decisive-agent doubt is rare — most stories lack it; both stories in a pair typically agree on its absence|
-|E1 ≥ 2|The macro-state disposed against conflict is a category prerequisite|
-|E3 ≥ 2|Information asymmetry at population level is similarly universal|
-|E4 ≥ 2|Systematic confidence challenges pervade the category|
-|C6 low|Flinching is episodic; most stories don't feature it; pairs agree on its absence|
+| Feature | Why it survives even across uncorrelated pairs                                                                      |
+| ------- | ------------------------------------------------------------------------------------------------------------------- |
+| C3 = 0  | Emergent decisive-agent doubt is rare — most stories lack it; both stories in a pair typically agree on its absence |
+| E1 ≥ 2  | The macro-state disposed against conflict is a category prerequisite                                                |
+| E3 ≥ 2  | Information asymmetry at population level is similarly universal                                                    |
+| E4 ≥ 2  | Systematic confidence challenges pervade the category                                                               |
+| C6 low  | Flinching is episodic; most stories don't feature it; pairs agree on its absence                                    |
 
 This suggests the analytical framework has a two-tier structure that the low-correlation analysis makes visible: a **universal floor** (E1/E3/E4 and the near-zero C3/C6 baseline) that all non-firing guns share regardless of mechanism, and a **discriminating superstructure** (C1–C5, D1/D4/D5/D6/D7) where the actual differences between story types reside. The low-correlation pairs diverge maximally on exactly the discriminating superstructure and agree only on the universal floor — making them the ideal test cases for validating the framework's internal architecture.
 
 [^1]: This should contain all and only necessary context.
+
+[^2]: This is of course not a comprehensive justification for the feature set, but arguably a validation on the most striking points of utility or failure.

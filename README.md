@@ -17,6 +17,13 @@ Continuous alignment comes in many forms and the essence of the idea is to keep 
 This is intended to establish an engineering approach to the 2 highlighted security improvements that aims to dimension them and refine them, as well as the underlying theory simultaneously over iterations.[^5][^6][^7] During the process, LLM's should be intentionally leveraged and regular reflection on methods, especially in AI use, practiced.
 
 The rest of the content of the repo belongs to examples of the research pattern, i. e. continuous alignment, in use.
+### Good outcomes
+- precision in emergent intelligence theory
+- a decision theory optimality test
+- a stable tech-assisted set of practices that improves the adoptive community health
+- more detail in info theory and learning theory
+- practice of LLM-assisted, verifiable hard scientific theory design
+- concrete community management advice that applies to mixed machine-human groups 
 ### A possible entry point for reading
 I want this repo to go through 3 very fuzzily distinguishable stages
 1. collection philosophical, conceptual texts, mathematical notations, programming infrastructure choices; with many links to guide reading in a non-linear way[^8]
@@ -35,15 +42,18 @@ a read-through is timely to remove old and unclear or plain wrong bits
 files to work on (immediately: checked, near-term: unchecked)
 - [ ] [[deter]]
 - [ ] [[defuse]]
-- [ ] [[theory core]]
-- [x] [[scale-free]]
-- [ ] [[information]]
-- [ ] [[22]]
+- [x] [[theory core]]
+- [ ] [[scale-free]]
+- [x] [[information]]
+- [x] [[22]]
 - [x] [[12]]
+- [ ] [[13]]
+- [x] [[14]]
+- [x] [[15]]
 - [ ] [[collapse]]
-- [ ] [[embedding autonomous machines]]
+- [x] [[embedding autonomous machines]]
 - [x] [[outliers]]
-- [x] [[causality in RL]]
+- [ ] [[causality in RL]]
 ### Calling for collaboration
 These days, although I have prepared notes, I have little time to write them down properly, I'm happy to be contacted about them anyway. 
 

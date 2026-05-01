@@ -20,29 +20,25 @@ Type of fractional agents -- we require the following characteristics:
 - consumption of resources at some-coarse-graining level, interactions in which some other object (or fractional agent) loses structure and provides energy to the consuming fractional agent
 The core of the theory is about making these more rigorous ([[later]]). In my view these are the key characteristics of the way in which humans tend to blur the type difference between PC controlling and advisor agents and themselves, and consequently creating an emotionally approachable sense of (mis)alignment. This sense is not to be dismissed as it provides directions for alignment: on the one hand, informally ("what machine behavior are we unhappy with"), on the other hand, within this theory, as we aim to describe effects across different levels of granularity and memetic features' influence on materialistic, e. g. economic, function (of individuals, institutions, machines etc.), in the form of non-trivial mathematical theorems about the elusive ideal HMI to high-impact AI. In particular, in [[deter]]rence.
 ### Work in progress as of last update
-(check: to touch immediately)
+check: to touch immediately
 - [ ] I am familiarizing myself with the quiver representation of deep linear networks in learning theory
 - [ ] multi-agent systems where at least one agent consists of a quiver but so is the representation of their connection is interesting because it raises questions about [[scale-free]] characteristics of systems that decompose into agents, possibly at multiple levels of hierarchy
 - [ ] one of the general directions where I intend to take this theory is defining a transformation of quivers (or the underlying graph) where a set of vertices -- satisfying certain conditions -- [[collapse]] into a single one, which corresponds to identification of complex objects or agents being modeled
 - [x] it seems that the edges shall model the transcoding/propagation of [[information]], but in the long run, I also intend to utilize them to express interactions with physical objects, esp. resources 
 - [ ] that means, loosely speaking, working with a network in which information propagation and physical interactions are coexistent (maybe interchangeable?)
+- [x] I speculate that there can be a consistent advancement in embedded agent foundations if we consider fractional agents as dualistic agents and observe which quantitative claims are (approximately) invariant over various fractional agent boundary definitions.
 
 ### training regimes
 The distinction between deterrence and defusing, although it comes from a security approach (in [[README]]), is reminiscent of an AIS topic: it is the distinction between stable, typical operational situations and unusual, illegal-origin observations -- rhyming with the challenge of in-distribution or out-of-distribution generalization. The parallel is rather weak, but it's worth noting that both can be aided by increasing confidence in sorting subsets of data based on their prominence in the natural process that they are sampled from. The direct ML relevance is addressed in [[outliers]], here let's focus on a conceptual, heuristic principle of increasing said confidence.
 
 Consider an RL agent $P$ and baseline reward signal $r'$: goal misgeneralization examples suggest that as the optimal reward signal is approached, the density of such policies that produce a behavior considered erratic when contrasted with intermediate-reward-achieving ones increases, i. e. the likelihood that the policy has been optimized by a spurious correlation between actions and rewards, and that it thus assigns overestimated credit to actions not intended to be captured by $r'$, increases. We wish that instead of optimizing beyond the limits of the expressivity of $r'$, the policy update rate of $Q$ automatically slowed down. Our idea: assume that on (the poorly shaped, human-supplied) $r'$ the "within limits" policies mostly resemble human-like ones and data that significantly shifts the value of $r'$ is significantly less frequent in training. Furthermore, that is due to some special quality which can be learned about said data. Then we actually wish to _filter out that data on the fly_, and train for agent inaction on it.
 
-This means we create a new reward $r=r'+s$ with a "suspicion score" $s$ that increases with the frequency that the agent remains inactive and flags a data point (subset), which would produce a sudden jump in the value of $r'$ if the policy were updated based on $r'$. What can we tell about such data point( subset)s? Keywords that should guide attention (cf. Iliad curriculum...), look these up and implement a point classification:
-- high leverage points
-- high entropy, low mutual information points
-- ergodicity
-- point permutation
-- edge of stability
-- phase transitions, susceptibilities
-- quantum state identification
+This means we create a new reward $r=r'+s$ with a "suspicion score" $s$ that increases with the frequency that the agent remains inactive and flags a data point (subset), which would produce a sudden jump in the value of $r'$ if the policy were updated based on $r'$. What can we tell about such data point( subset)s? Ultimately, we want to implement a point classification, covered in [[outliers]].
+
 This classification and suspicion training is crucial to the idea that the limits to the applicability of its policy can be learned by the agent.[^1] Arguably, it is more complicated to apply it in the present, most general agent model, so as a proof of concept we shall properly formalize and test it in simple RL experiments. We look for a regime of the input data distribution in which there's high confidence about the action-reward mapping, i. e. credit assignment and another regime where action is deferred. Eventually we hope to see analogous behavior in fractional agents, too, so that they effectively regulate the resource that gets allocated to them.
 
 ### uncertainties in decision-making
+[[outliers#acute misalignment]] is an intro
 this is a more serious part, get it right...
 - meta-level indicative
 - data-inherent

@@ -7,16 +7,20 @@ Let's focus on the situations in which "AI-enabled dangerous activities" or prep
 Hence the following approaches that I propose
 - give a recipe for a proof, or a very abstract skeleton for it that can be applied rapidly as risks are explored and produces concrete preventive actions
 - relax the requirement on causality
-Arguably working with the latter requires more convincing characterization and is a delicate proposal in scientific discourse, so here we narrow our focus on the former.
+Arguably working with the latter requires more convincing characterization and is a delicate proposal in scientific discourse, so here we narrow our focus on the former. The latter is more detailed in [[13]]
 ### Meta-level danger prevention
 Nevertheless, even if we theoretically consider a scenario where the preventive actions have been effective, we expect a moment when this is made clear, i. e. the presence of danger at an earlier point recognized and its absence (and impossibility) made explicit. Let's suppose that such scenarios are not only possible but exemplified in history. As a first step, let's seek these: the methodology is described in [[avoided]]. Preliminarily I consider the hypothesis strengthened by the findings -- at least a subset of the story features in [[nfg_framework_v3_c]] is represented in the examples -- however, it seems like there may be room for refining or removing some features for more precise characterization.
 
 The purpose of this line of experimentation is twofold:
 - aim at abstracting away enough of the stories so that we can apply
 	- classical statistical physics
-	- [[theory core]]
+	- contact event networks in [[theory core]]
 - provide a basis of inspiring fiction that makes a wide public predisposed to enacting deescalatory actions
 ### Abstract story features
-
+Here let's see a plan of how to use story abstractions (building on [[avoided#Initial exploration of feature statistics -- prompting again, responses only]])
+- a minor scoring refinement can be done, a good opportunity for re-scoring and comparing to see if scores converged
+- CA, CB, DA, DB could be a candidate clustering that warrants distinction of different mapping onto theories
+- E features may not be useful for mapping onto theories
+- a reconciliation of both theories to be mapped onto may be necessary, initial steps in [[outliers]]
 
 [^1]: If the latter example seems hyperbolic, substitute a large enough disaster to render any speculations prior to the positive experiment a posteriori ill-defined.
