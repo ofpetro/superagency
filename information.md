@@ -16,10 +16,15 @@ this section is about using a non-probability-based approach to help add nuance 
 - some series of events can have wildly varying $i$ not just in time ordering but actual time differences between them
 - causality needs to be eliminated from models with many variables but "influence" may give a good intuition
 ### more on acausality and non-causality
-[[outliers]] detection is vital probably for convergent instrumental goals -- recap the intro of [[causality in RL]]:
+outliers detection is vital probably for convergent instrumental goals -- recap the intro of [[causality in RL]]:
 1. agent-dependent value that can't be extracted from the game
 2. agents self-impose the limitation
 3. one that machines don't but humans do is causality
+a case to make that connects the 2 cited topics: 
+- the preservation-flavored convergent instrumental goals (agent, task, reward...) could be shown (possibly with the help of [[README#Backchaining as RL]]) to be tied to criteria about the terminal goal and reward definition
+- building in a mechanism that lets control the ingestion of data, so that the agent has control over suspect out-of-distribution data, in training and / or deployment helps with such goals
+- [[online data preprocessing]] wants to argue that and how this is achievable
+i. e. "through a high avoidance of distributional shift on the next observed data batch, a stable feature of preserving instrumental goal pursuit can emerge and stabilize" is a hypothesis that we should better formalize and test
 ### in coarse-graining
 A minimal requirement for studying (any of the measure-theoretic quantities related to) information is that a random process is sampled at least once: we should confirm that sampling is possible and then may or may not want to sample again. In any case, there is an assumption that the process at a later time of a possible sampling is equivalent to the one we once have measured in some sense. Moreover, part of that sense must be the qualitative way information is collected by sampling (even if the information content of the process may change, it must be the _same_ process at least from the perspective of our information extraction). Therefore sensory channels connecting to the process define an equivalence class off processes.
 

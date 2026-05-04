@@ -38,22 +38,42 @@ Beware that the text is intentionally trying to use an everyday linguistic style
 
 To go through the remains of an early version, go to the [summary](4.md).
 ### Status
-a read-through is timely to remove old and unclear or plain wrong bits
 files to work on (immediately: checked, near-term: unchecked)
-- [ ] [[deter]]
+- [x] [[deter]]
 - [ ] [[defuse]]
 - [x] [[theory core]]
 - [ ] [[scale-free]]
 - [x] [[information]]
-- [x] [[22]]
-- [x] [[12]]
-- [ ] [[13]]
+- [ ] [[22]]
+- [ ] [[12]]
+- [x] [[13]]
 - [x] [[14]]
-- [x] [[15]]
+- [ ] [[15]]
 - [ ] [[collapse]]
-- [x] [[embedding autonomous machines]]
+- [ ] [[embedding autonomous machines]]
 - [x] [[outliers]]
 - [ ] [[causality in RL]]
+- [x] [[research-1]]
+- [x] [[research-2]]
+### High impact-to-effort contributions
+There are files with hopefully clear writing (& mathematical derivation!) prompts. These can be worked on straight away.
+
+Currently [[llm-scope]] is intended to contain files which are ready for LLM processing. In principle, these should be in such a state that no (or marginal) extra prompt is needed. Probably an unified pipeline to process them would be useful so that they automatically produce artifacts e. g. on pre-commit (then the created artifacts get automatically added and checked in the [[#Status]] list).
+### Larger scale improvements
+These are the exceptionally time-consuming, complex and identified-as-crucial research streams within the project's scope. Especially at the current early stage high focus must be given to verifying that they take a direction conducive to the project goal stated highly abstractly [[#Turning concerns with autonomous machines into operational relief]]. As affirmative signal is collected, the focus can move to object-level, high-detail work. In parallel with this, a shift in LLM-assistance practice is recommended. Initially, high-context, more informal, research-heavy conversations are suggested, and possible pathways to contribution to be explored only to the earliest point where a slightly confident verdict can be given on their relevance (in a breadth-first search spirit). In the later stage, we can consider a path taken and robustly followed and we should take care of structuring and breaking it down into low-context research tasks, then those may again be approached with machine assistance.
+#### Continuous improvement of development pipeline
+- pre-commit hook as mentioned in [[#High impact-to-effort contributions]]
+- regular post-commit review of artifacts and [[12]]
+- curating [[llm-scope]] content
+- collecting and integrating external feedback
+#### Backchaining as RL
+- as hinted at in [[causality in RL]], the policy optimization is interesting as a retrograde process where the starting point is the optimal policy under the internal reward function and the optimization trajectories can be explored backwards as the set of points from where the optimum is reachable
+- of course this view is impossible to formalize in this form since the very notion of convergence to optimality is that at any backward step there is a multitude of new possible policies to step back to
+- however, a better stated version seems to emerge from the literature covered in [[back-rl]]
+- refine the literature review with LLM assistance, identify core papers, read them closely, write up a summary of the relevant points, reconsider informativity, iterate
+#### Data preprocessing
+- to formalize the hypothesis of [[information#more on acausality and non-causality]] we first have to formalize "per-data-batch distribution shift avoidance" -- on the one hand, this is the attempt of [[online data preprocessing]], on the other the vague wording should apply to the social situations from [[deter]] and [[defuse]]
+- the 2 prompt responses on this so far give a detailed, but yet unchecked suggestion for a research plan, however that seems a solid starting point
 ### Calling for collaboration
 These days, although I have prepared notes, I have little time to write them down properly, I'm happy to be contacted about them anyway. 
 

@@ -21,6 +21,6 @@ Here let's see a plan of how to use story abstractions (building on [[avoided#In
 - a minor scoring refinement can be done, a good opportunity for re-scoring and comparing to see if scores converged
 - CA, CB, DA, DB could be a candidate clustering that warrants distinction of different mapping onto theories
 - E features may not be useful for mapping onto theories
-- a reconciliation of both theories to be mapped onto may be necessary, initial steps in [[outliers]]
+- a reconciliation of both theories to be mapped onto may be necessary
 
 [^1]: If the latter example seems hyperbolic, substitute a large enough disaster to render any speculations prior to the positive experiment a posteriori ill-defined.
