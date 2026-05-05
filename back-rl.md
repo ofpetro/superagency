@@ -4,6 +4,8 @@ In order to do that, first the missing citations need to be identified.
 
 Only do this: search for instances in the text where authors or recurrent topics are mentioned and identify the publication (or the most likely candidates) of which the citation is missing from the text.
 
+---
+
 - **Kakade–Langford 2002 (CPI)** is the foundational paper: the Performance Difference Lemma η(π̃) − η(π) = (1/(1−γ))·𝔼_{s∼d^{π̃},a∼π̃}[A^π(s,a)] translates policy-space distance into value-gap bounds, and the mixture-update bound η(π_new) ≥ L_{π_old}(π_new) − (2εγ)/(1−γ)²·α² is the exact per-iteration improvement guarantee the fixed-point framework wants. 
 - **DAgger (Ross et al. 2011)** bridges imitation and RL with a trajectory-level bound J(π̂) ≤ J(π*) + u·T·ε_N + O(1), giving linear horizon-dependence provided the Q-gap u is bounded — a direct warm-start-from-π* result.
 - **TRPO (Schulman et al. 2015) Theorem 1** is the direct generalization — η(π') ≥ L_π(π') − (4εγ/(1−γ)²)·α² with α the max-state TV distance, and its KL form via Pinsker. This is **the canonical formal bound**: quadratic in policy distance, with a 1/(1−γ)² horizon prefactor that explodes as γ→1 (a warning sign for long-horizon alignment settings). 

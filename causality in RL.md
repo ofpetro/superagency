@@ -1,3 +1,6 @@
+The titled sections only contain keywords as drafts, they should be elaborated. Only process the first one now.
+
+---
 A crucial part of the possibility of optimizing a policy is value estimation, itself involving discounting future values.[^1] Here we first investigate why that is crucial, i. e. what effect the discounting formula has.
 
 Consider the following game: in one round the agent can take 3 actions $G, H, I$ and it is independently decided according to a random process which of 2 effects they take.
@@ -40,8 +43,6 @@ The value of $\tau$ is the choice of the agent (via the discounting) and $T$ dep
 A case can be made that projecting current observed value-based decision theory to estimate future reward is not optimal. This suggests that if this case can be properly formalized in RL, then the optimal policy is approximated in a retrograde fashion starting with the best approximation for the final action. Indeed, prompting in [[back-rl]] suggests that there is some (but scarce) literature supporting this, pointing to a promising research area.
 
 Go to [[information#more on acausality and non-causality]] for more.
-
-Elaborate on the remaining sections.
 ### underlining the necessity
 self-alignment is expected from a fractional agent for health and that involves resource consumption regulation as in [[theory core#training regimes]] and that involves backchaining and we do it and it works
 ### underlining observation-limited attribution correction
