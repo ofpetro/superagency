@@ -1,4 +1,3 @@
-(A longer format motivating piece is in the works and can be early-accessed: [[Why Ensuring Flourishing Is Not About Alignment — LessWrong.pdf]])
 ### Turning concerns with autonomous machines into operational relief
 Continuous alignment comes in many forms and the essence of the idea is to keep finding opportunities for identifying them in different application areas. To both illustrate that and seed execution of exemplary agendas for it, this repo documents several closely connected research activities following this pattern:
 - An AI risk can be identified in this shape
